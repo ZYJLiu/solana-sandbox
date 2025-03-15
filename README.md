@@ -45,12 +45,12 @@ Once the server is running, you can test it with curl:
 curl http://localhost:3000/health
 
 # Hello world example in Rust
-curl -X POST http://localhost:3000/compile \
+curl -X POST http://localhost:3000/rust \
   -H "Content-Type: application/json" \
   -d '{"code": "fn main() { println!(\"Hello, world!\"); }", "language": "rust"}'
 
 # Hello world example in TypeScript
-curl -X POST http://localhost:3000/compile \
+curl -X POST http://localhost:3000/typescript \
   -H "Content-Type: application/json" \
   -d '{"code": "console.log(\"Hello, world!\");", "language": "typescript"}'
 ```
