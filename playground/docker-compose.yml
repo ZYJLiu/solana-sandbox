@@ -1,0 +1,62 @@
+services:
+  rust-playground:
+    build:
+      context: ./server
+      platforms:
+        - linux/amd64
+    platform: linux/amd64 # Explicitly run with amd64 architecture
+    ports:
+      - "8080:3000" # Axum server
+    environment:
+      - HOST=0.0.0.0
+      - PORT=3000
+      - PLAYGROUND_DIR=/app/playground
+      - SOLANA_URL=http://solana-validator:8899
+      - SOLANA_WS_URL=ws://solana-validator:8900
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+    restart: unless-stopped
+    depends_on:
+      - solana-validator
+    # Add this to enable working with Docker host
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  solana-validator:
+    image: ghcr.io/beeman/solana-test-validator:latest
+    ports:
+      - "8899:8899" # Solana validator RPC
+      - "9900:9900" # Solana faucet port
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "curl",
+          "-s",
+          "-X",
+          "POST",
+          "-H",
+          "Content-Type: application/json",
+          "-d",
+          '{"jsonrpc":"2.0","id":1,"method":"getHealth"}',
+          "http://localhost:8899",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    command:
+      [
+        "solana-test-validator",
+        "--bind-address",
+        "0.0.0.0",
+        "--rpc-port",
+        "8899",
+        "--faucet-port",
+        "9900",
+      ]
+    restart: unless-stopped

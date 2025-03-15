@@ -1,0 +1,38 @@
+# Rust specific ignores
+/target/
+Cargo.lock
+**/*.rs.bk
+*.pdb
+
+# Generated Documentation
+/doc/
+/docs/
+/target/doc/
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Testing/Benchmarking
+/benches/target/
+
+# Environment variables
+.env
+
+# Editor directories and files
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+*.suo
+*.swp
+*.swo
+*~
+
+# OS specific
+.DS_Store
+Thumbs.db 
