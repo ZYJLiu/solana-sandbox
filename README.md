@@ -1,4 +1,4 @@
-# Solana Lambda & Rust Playground
+# Solana Typescript & Rust Playground
 
 This repository contains a Rust and TypeScript Playground server that allows compiling and running code via an API, along with a web frontend for easy interaction. It's designed to support Solana development with both Rust and TypeScript environments.
 
@@ -66,19 +66,10 @@ curl -X POST http://localhost:3000/typescript \
   - AWS Fargate deployment ready
 
 - **Frontend**:
-  - Clean, modern UI using Shadcn components
   - Advanced code editing with Monaco Editor
   - Syntax highlighting for Rust and TypeScript
   - Output terminal display
   - Error highlighting
-
-## Future Enhancements
-
-- Additional Monaco Editor features (code completion, error checking)
-- Support for additional crates and npm packages in the playground environment
-- Code execution time limits and resource constraints
-- User sessions for saving and sharing code snippets
-- Examples library of code snippets
 
 ## Detailed Documentation
 
